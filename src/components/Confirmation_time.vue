@@ -45,8 +45,8 @@
       </div>
     </van-popup>
     <!--添加预约时间按钮切换-->
-    <div v-if="order.status == 1 ? true : false">
-      <van-button size="large" @click="show = true" v-if="true">
+    <div v-if="order.status == 1 ? false : true">
+      <van-button size="large" @click="show = true">
         点击添加预约时间
         <span style="color: red;font-size: 12px">剩余预约次数：<span style="font-size: 20px">{{spus.serviceTimes - orderLists.length}}</span>次</span>
       </van-button>
@@ -64,7 +64,6 @@
         </van-collapse-item>
       </van-collapse>
     </div>
-
   </div>
 </template>
 
@@ -105,7 +104,7 @@
         // ===========
         addressList:undefined,
         addressData:ChinaAddressData,
-        order:{status:1},
+        order:{},
         city1: '',
         imgs:{},
         address:{},
@@ -198,14 +197,17 @@
               orderId:orderId,
             }
           }).then(({data})=>{
+            if(status == 2){
+              this.orderLists = data.data.serviceTimesList;
+            }
               console.log(data);
               this.imgs = data.data.img;
               this.address = data.data.serviceAddress;
               this.skus = data.data.sku;
               this.spus = data.data.spu;
               this.city1 = this.addressFilter1(this.address.city, this.addressData) + this.address.address;
-              this.orderLists = data.data.serviceTimesList;
-              // console.log(this.minuteListValue);
+              this.order = data.data.order;
+              console.log(this.order)
             }
           )
         }

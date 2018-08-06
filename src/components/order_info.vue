@@ -56,6 +56,7 @@
 			<div class="total">总计：<span>￥{{chosenCoupon < 0 ? spu.price / 100 : (spu.price - coupons[chosenCoupon].value) / 100 }}</span></div>
 			<div class="submit" @click="submit()">确认预约</div>
 		</div>
+    <!--<van-submit-bar :price="{{chosenCoupon < 0 ? spu.price / 100 : (spu.price - coupons[chosenCoupon].value) / 100 }}" button-text="确认预约" @submit="submit()"/>-->
 		<div v-transfer-dom>
 			<popup v-model="show" position="bottom" max-height="50%" style="background: #ffffff;">
 				<div class="address" v-for="(address,index) in addressList" @click="changeAddress(index)">
@@ -156,11 +157,10 @@
         this.coupons.push(coupon);
       },
       submit:function(){
-        var couponId;
-        var couponIndex;
-        console.log(this.spu.id);
-        if(this.chosenCoupon > 0){
-          couponId = this.coupons[couponIndex].id
+        console.log(this.chosenCoupon);
+        if(this.chosenCoupon >= 0){
+          var couponId = this.coupons[this.chosenCoupon].id
+          console.log(couponId)
         }
         this.$http({
           url:'/api' + '/add_order.do',
@@ -231,6 +231,7 @@
                 var coupons = data.data.coupons;
                 for(var i= 0; i < coupons.length;i++){
                   var coupon = {};
+                  coupon.id = coupons[i].id;
                   coupon.denominations = coupons[i].denomination;
                   coupon.origin_condition = coupons[i].conditions4use;
                   coupon.value = coupons[i].denomination;
@@ -386,7 +387,7 @@
 		height: 60px;
 		width: 100%;
 		position: fixed;
-		bottom: 0px;
+		bottom: 0;
 		background: @housekeeping_body_color;
 		display: flex;
 		display: -webkit-flex;

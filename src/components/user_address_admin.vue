@@ -82,7 +82,7 @@
 						console.debug(_this.addressList[_this.addressIndex].id);
 						_this.$http({
 							method: "post",
-							url: '/delete_address.do',
+							url: '/api'+'/delete_address.do',
 							params: {
 								id: _this.addressList[_this.addressIndex].id
 							}

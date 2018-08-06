@@ -8,9 +8,9 @@
 		<div class="classfly-show" :style="sidebarHeight">
 			<div class="classfly-show-row">
 				<div class="classfly-show-row-item" v-for="(sku,index) in classflyToSkus">
-					<router-link to="item_details">
+					<router-link :to="{name:'item_details',query:{skuId:classflyToSkus[index].id}}">
 						<div class="box">
-							<img :src="classflyToImgs[index][0].src">
+							<img :src="classflyToImgs[index].src">
 							<p>{{sku.title}}</p>
 							<div>￥{{classflyToSpus[index].price / 100}}元/小时</div>
 							<span>销量：{{sku.salesVolume}}</span>

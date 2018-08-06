@@ -1,13 +1,16 @@
 <template>
 	<div class="item-details">
 		<housekeeping-head title="服务详情"></housekeeping-head>
-		<swiper auto :list="imgList" style="width:100%;" :aspect-ratio="1" dots-class="custom-bottom" dots-position="right" :show-desc-mask="false">
+		<swiper auto :list="mainPictures" style="width:100%;" :aspect-ratio="1" dots-class="custom-bottom" dots-position="right" :show-desc-mask="false">
 		</swiper>
 		<div class="item-details-info">
 			<div class="item-details-title">{{skus.title}}</div>
 			<div class="item-details-introduce">{{skus.introduce}}</div>
-			<div class="item-details-price">￥{{spuses[0].price / 100}}-{{spuses[1].price / 100}}</div>
-			<p>总销量：{{skus.salesVolume}}</p>
+			<div class="item-details-price">
+        ￥{{spuses[0].price / 100}}-{{spuses[spuses.length-1].price / 100}}
+        <span style="font-size: 15px;color: silver;text-decoration: line-through"></span>
+      </div>
+      <p>总销量：{{skus.salesVolume}}</p>
 		</div>
 		<div class="item-relevant">
 			<div>服务范围：重庆</div>
@@ -15,8 +18,8 @@
 		</div>
 		<div class="item-details-img">
 			<p>商品详情</p>
-			<div>
-				<img :src="details" :width="setImgWidth" style="">
+			<div v-for="(detailDiagram , index) in detailDiagrams" :key="index">
+				<img :src="detailDiagram.src" :width="setImgWidth" style="">
 			</div>
 		</div>
     <div class="C_P">
@@ -30,10 +33,10 @@
 
 <script>
 	import { Swiper } from 'vux'
-	import item0 from '@/assets/details/item0.jpg'
-	import item1 from '@/assets/details/item1.jpg'
-	import item2 from '@/assets/details/item2.png'
-	import details from '@/assets/details/12.jpg'
+	 import item0 from '@/assets/details/item0.jpg'
+	 import item1 from '@/assets/details/item1.jpg'
+	 import item2 from '@/assets/details/item2.png'
+	// import details from '@/assets/details/12.jpg'
   // import C_service from '@/assets/img/servce/C_service.png'
 
 	export default {
@@ -41,48 +44,47 @@
       goTo(path){
         this.$router.replace(path)
       },
-      initData(){
+      initData(skuId){
         this.$http({
           method:'post',
-          url:'/api' + '/item_details.do',
-          params:{
-            spuId:1
+          url : '/api' + '/item_details.do',
+          params:skuId
+        }).then(({data}) =>{
+          console.log(data);
+          var mainPictures = [];
+          for (var i = 0 ; i < data.data.mainPicture.length; i++) {
+            var mainPicture = {};
+            mainPicture.url = 'javascript:';
+            mainPicture.img = data.data.mainPicture[i].src;
+            mainPictures.push(mainPicture);
           }
-        }).then(({data})=>{
-          console.log(data)
-          this.detailDiagrams = data.data.detailDiagram;
-          for (var i=0;i < data.data.mainPicture.length ; i++){
-           this.mainPictures = data.data.mainPicture[i]
-          }
+          this.mainPictures = mainPictures;
           this.skus = data.data.sku;
-          this.spuses = data.data.spus
+          this.spuses = data.data.spus;
+          this.detailDiagrams = data.data.detailDiagram;
+          // for(var i = 0 ; i < spus.length; i++ ){
+          //
+          // }
+          // console.log(this.mainPictures[0].src)
         })
       }
     },
+    // watch:{
+    //   mainPictures:function(newQuestion){
+    //     this.img = this.mainPictures;
+    //   }
+    // },
 		components: {
 			Swiper
 		},
 		data() {
 			return {
-				imgList: [{
-						url: 'javascript:',
-						img: item0,
-					},
-					{
-						url: 'javascript:',
-						img: item1,
-					},
-					{
-						url: 'javascript:',
-						img: item2,
-					}
-				],
-				details: details,
 				setImgWidth: '',
-        detailDiagrams:[],
         mainPictures:[],
-        skus:[],
+        detailDiagrams:[],
+        skus:{},
         spuses:[{}],
+        // img:[]
 			}
 		},
 
@@ -92,8 +94,9 @@
 				this.setImgWidth = this.getWindowWidth() * 0.96;
 			}else{
 				this.setImgWidth = 540 * 0.96;
-			};
-			this.initData();
+			}
+      this.initData(this.$route.query);
+			console.log(this.$route.query);
 		},
 	}
 </script>

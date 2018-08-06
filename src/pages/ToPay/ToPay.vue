@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li class="Order_box" v-for="(data , index) in datas" :key="index">
-        <div class="Order_secbox" @click="goToCheck()">
+        <div class="Order_secbox" @click="goToPay(index)">
           <img class="Order_headpic" :src="data.img.src" alt="">
           <div class="Order_depict">
             <p>{{data.sku.title}}</p>
@@ -49,7 +49,7 @@
           })
         }
       },
-      goToCheck(index){
+      goToPay(index){
         this.$router.push({path:'/confirmation_time',query:{orderId:this.datas[index].order.id,status:this.datas[index].order.status}});
       },
       wxpay:function(){

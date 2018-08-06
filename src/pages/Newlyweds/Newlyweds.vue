@@ -6,7 +6,7 @@
       <ul class="N_Box">
           <li class="N_title">淘厨汇新人券</li>
         <li class="N_piceBox">
-          <div class="yellow" v-for="(coupon , index) in coupons" :key="index">
+          <div class="yellow" v-for="(coupon , index) in coupons" :key="index" @click="getUserCoupon(index)">
             <img class="N_card" src="../../assets/img/servce/yellow.png" alt="">
             <div class="color_red">
               <p>¥<span class="money_size">{{coupon.denomination / 100}}</span></p>
@@ -51,11 +51,25 @@
               url:'/api' + '/receive_coupon.do',
               params:{
                 getPath:1
+
               }
             }).then(({data}) =>{
+
               this.coupons = data.data
             })
           }
+        },
+        getUserCoupon(index){
+          console.log(this.coupons[index].id);
+          this.$http({
+            method:'post',
+            url:'/api' + '/user_receive4coupon.do',
+            params:{
+              couponId:this.coupons[index].id
+            }
+          }).then(({data}) =>{
+            console.log(data);
+          })
         }
       },
       filters:{

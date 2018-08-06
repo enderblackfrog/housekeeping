@@ -16,7 +16,7 @@
 			<div class="div1">领取微信会员卡</div>
 		</div>
 		<div class="p-relevant">
-			<div class="div1" @click="goNew">领取优惠券</div>
+			<div class="div1">领取优惠券</div>
 			<div class="div1" @click="goMyCoupon">我的优惠券</div>
 		</div>
 		<div class="p-relevant">

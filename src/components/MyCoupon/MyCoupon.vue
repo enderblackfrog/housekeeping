@@ -57,7 +57,7 @@
 </script>
 
 <style scoped>
-  .NF_body{height: 100vh;}
+  .NF_body{padding-bottom: 5rem}
   .NF_Box{width: 93%;margin: 0 auto}
   .NF_pice{width: 100%;position: relative}
   .NF_banner{width: 100%;margin-top: 10px}
