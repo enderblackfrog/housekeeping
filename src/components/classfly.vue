@@ -36,11 +36,11 @@
 				classflyToSpus:undefined,
 				Spus:undefined,
 				classflyToImgs:undefined,
-				Imgs:undefined
+				Imgs:undefined,
 			}
 		},
 		created() {
-		  const BASE_URL = '/api'
+		  const BASE_URL = '/api';
 			this.sidebarHeight = "height:" + (this.getWindowHeight() - 260) + "px";
 			this.$http.post(BASE_URL+'/classfly.do').then(({
 				data

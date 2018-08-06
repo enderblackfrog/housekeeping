@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li class="Order_box" v-for="(data , index) in datas" :key="index">
+      <li class="Order_box" v-for="(data , index) in datas" :key="index" @click="yuyue(index)">
         <div class="Order_secbox">
           <img class="Order_headpic" :src="data.img.src" alt="">
           <div class="Order_depict">
@@ -12,7 +12,7 @@
         </div>
         <div class="Order_bottom_set">
           <!--<span class="turn_inblock">取消订单</span>-->
-          <span class="turn_inblock" @click="yuyue(index)">立即预约</span>
+          <span class="turn_inblock">立即预约</span>
         </div>
       </li>
     </ul>

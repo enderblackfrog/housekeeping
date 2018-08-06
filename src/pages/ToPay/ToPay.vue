@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li class="Order_box" v-for="(data , index) in datas" :key="index">
-        <div class="Order_secbox">
+        <div class="Order_secbox" @click="goToCheck()">
           <img class="Order_headpic" :src="data.img.src" alt="">
           <div class="Order_depict">
             <p>{{data.sku.title}}</p>
@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="Order_bottom_set">
-          <span class="turn_inblock" @click="deleteOrder(index)">取消订单</span>
+          <span class="turn_inblock" @click="deleteOrder(index)">删除订单</span>
           <span class="turn_inblock" @click="wxpay">付款</span>
         </div>
       </li>
@@ -48,6 +48,9 @@
             return this.datas
           })
         }
+      },
+      goToCheck(index){
+        this.$router.push({path:'/confirmation_time',query:{orderId:this.datas[index].order.id,status:this.datas[index].order.status}});
       },
       wxpay:function(){
         console.log('去支付')

@@ -4,10 +4,10 @@
 		<swiper auto :list="imgList" style="width:100%;" :aspect-ratio="1" dots-class="custom-bottom" dots-position="right" :show-desc-mask="false">
 		</swiper>
 		<div class="item-details-info">
-			<div class="item-details-title">超值包月套餐</div>
-			<div class="item-details-introduce">建议面积：80㎡及以下（2次）</div>
-			<div class="item-details-price">￥299</div>
-			<p>总销量：89</p>
+			<div class="item-details-title">{{skus.title}}</div>
+			<div class="item-details-introduce">{{skus.introduce}}</div>
+			<div class="item-details-price">￥{{spuses[0].price / 100}}-{{spuses[1].price / 100}}</div>
+			<p>总销量：{{skus.salesVolume}}</p>
 		</div>
 		<div class="item-relevant">
 			<div>服务范围：重庆</div>
@@ -40,6 +40,23 @@
     methods: {
       goTo(path){
         this.$router.replace(path)
+      },
+      initData(){
+        this.$http({
+          method:'post',
+          url:'/api' + '/item_details.do',
+          params:{
+            spuId:1
+          }
+        }).then(({data})=>{
+          console.log(data)
+          this.detailDiagrams = data.data.detailDiagram;
+          for (var i=0;i < data.data.mainPicture.length ; i++){
+           this.mainPictures = data.data.mainPicture[i]
+          }
+          this.skus = data.data.sku;
+          this.spuses = data.data.spus
+        })
       }
     },
 		components: {
@@ -61,7 +78,11 @@
 					}
 				],
 				details: details,
-				setImgWidth: ''
+				setImgWidth: '',
+        detailDiagrams:[],
+        mainPictures:[],
+        skus:[],
+        spuses:[{}],
 			}
 		},
 
@@ -71,7 +92,8 @@
 				this.setImgWidth = this.getWindowWidth() * 0.96;
 			}else{
 				this.setImgWidth = 540 * 0.96;
-			}
+			};
+			this.initData();
 		},
 	}
 </script>

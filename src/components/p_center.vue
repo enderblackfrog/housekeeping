@@ -9,23 +9,23 @@
 				<div>绑定手机：{{user.telephone}}</div>
 			</div>
 		</div>
-		<!--<div class="p-relevant">-->
-			<!--<div class="div1">积分签到</div>-->
-		<!--</div>-->
-		<!--<div class="p-relevant">-->
-			<!--<div class="div1">领取微信会员卡</div>-->
-		<!--</div>-->
+		<div class="p-relevant">
+			<div class="div1">积分签到</div>
+		</div>
+		<div class="p-relevant">
+			<div class="div1">领取微信会员卡</div>
+		</div>
 		<div class="p-relevant">
 			<div class="div1" @click="goNew">领取优惠券</div>
 			<div class="div1" @click="goMyCoupon">我的优惠券</div>
 		</div>
-		<!--<div class="p-relevant">-->
-			<!--<div class="div1">我的关注</div>-->
-			<!--<div class="div1">我的足迹</div>-->
-		<!--</div>-->
-		<!--<div class="p-relevant">-->
-			<!--<div class="div1">充值记录</div>-->
-		<!--</div>-->
+		<div class="p-relevant">
+			<div class="div1">我的关注</div>
+			<div class="div1">我的足迹</div>
+		</div>
+		<div class="p-relevant">
+			<div class="div1">充值记录</div>
+		</div>
 		<div class="p-relevant">
 			<router-link to="user_address_admin">
 				<div class="div1">服务地址管理</div>

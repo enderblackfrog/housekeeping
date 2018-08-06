@@ -19,7 +19,7 @@
       </li>
     </ul>
     <!--按键变色-->
-    <div class="deep_bt">提交</div>
+    <van-button size="large" style="background-color: #00b9f6;color: whiteß">提交</van-button>
   </div>
 </template>
 
