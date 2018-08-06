@@ -1,0 +1,15 @@
+//基础字体大小
+@housekeeping_font_size1:9px;
+@housekeeping_font_size2:12px;
+@housekeeping_font_size3:14px;
+@housekeeping_font_size4:16px;
+@housekeeping_font_size5:20px;
+//基础大小颜色
+@housekeeping_font_color1:#333333;
+@housekeeping_font_color2:#666666;
+@housekeeping_font_color3:#999999;
+//boy颜色
+@housekeeping_body_color:#f5f5f5;
+//主题色
+@housekeeping_theme_color:#0db9fe;
+

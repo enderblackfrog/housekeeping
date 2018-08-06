@@ -1,0 +1,72 @@
+<template>
+	<div>
+		<housekeeping-head title="我的订单"></housekeeping-head>
+		<div class="my-order">
+			<div class="my-order-title">我的订单</div>
+			<div class="my-order-icons">
+				<div v-for="(icon,index) in icons" :class="{'order-active':index===ind}" @click="addActive(index)">
+					<img :src="icon.icon">
+					<p>{{icon.text}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="my-order-body">
+			<div class="order">
+				<div class="order-title">
+					<div class="order-number">订单编号：123456789</div>
+					<div class="order-time">下单时间：2018-05-04</div>
+				</div>
+				<div class="order-body-left"><img src="../assets/img/item/item.png" width="100px"/></div>
+				<div class="order-body-right">
+					<h3>钟点保洁</h3>
+					<p>单次4小时全屋保洁+擦窗</p>
+					<div>￥179</div>
+					<div>待完成</div>
+				</div>
+			</div>
+		</div>
+		<housekeeping-foot-nav iconIndex="2"></housekeeping-foot-nav>
+	</div>
+</template>
+<script>
+	import unpaid from '@/assets/icon/unpaid.png'
+	import subscribe from '@/assets/icon/subscribe.png'
+	import evaluate from '@/assets/icon/evaluate.png'
+	import after_sale from '@/assets/icon/after_sale.png'
+	import { Datetime } from 'vux'
+	export default {
+		data() {
+			return {
+				icons: [{
+					icon: unpaid,
+					text: '待付款'
+				}, {
+					icon: subscribe,
+					text: '待预约'
+				}, {
+					icon: evaluate,
+					text: '待评价'
+				}, {
+					icon: after_sale,
+					text: '退款/售后'
+				}],
+				ind: '0'
+			}
+		},
+		components: {
+   			Datetime
+  		},
+		created() {
+			this.addActive(0);
+		},
+		methods: {
+			addActive: function(idenx) {
+				this.ind = idenx;
+			}
+		}
+	}
+</script>
+
+<style>
+
+</style>

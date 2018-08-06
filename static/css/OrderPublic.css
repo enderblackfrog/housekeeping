@@ -1,0 +1,19 @@
+/*.Order_box{display:flex}*/
+.Order_box{background-color:white;border-bottom:10px solid #f5f5f5}
+ul *{font-size:13px;}
+.Order_secbox{display: flex}
+.Order_thrbox{display: flex}
+.Order_top_set{border-bottom:2px solid #f5f5f5;display: flex;justify-content: space-between;padding: .5rem 1rem;}
+.Order_bottom_set{text-align:right;padding: 0.5rem 1.5rem;border-top:2px solid #f5f5f5}
+.Order_bottom_set>span{padding: 0 .5rem;color:#00b9f6;border: 1px solid #00b9f6;margin-left:1rem;border-radius:10px}
+.Order_headpic{width:5rem;height:5rem;margin: 1rem 1.5rem}
+.Order_depict{margin: auto 0;}
+.middle_title{margin:.5rem 0 1rem 0;}
+/*删除线中穿*/
+.cross_line{text-decoration: line-through;color: gainsboro}
+.Order_time{margin: .3rem 0;}
+/*小兰快*/
+.little_block{    width: 3px;
+  height: 13px;
+  background-color: #00b9f6;
+  margin-right: 5px;}

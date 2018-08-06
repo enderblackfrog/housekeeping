@@ -1,0 +1,234 @@
+@import 'base';
+.housekeeping-head {
+    height: 50px;
+    background-color: @housekeeping_theme_color;
+    width: 100%;
+    .housekeeping-head-left {
+        width: 15%;
+        height: 50px;
+        float: left;
+        .housekeeping-icon-back {
+            height: 12px;
+            width: 12px;
+            border-style: solid;
+            border-width: 2px;
+            transform: rotate(45deg);
+            margin: 18px 0px 0px 15px;
+            border-color: transparent transparent #ffffff #ffffff;
+        }
+    }
+    .housekeeping-head-title {
+        width: 70%;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        color: #ffffff;
+        float: left;
+        font-size: @housekeeping_font_size5;
+    }
+    .housekeeping-head-right{
+        width: 15%;
+        height: 50px;
+        float: left;
+    }
+}
+
+.housekeeping-footer {
+    height: 60px;
+    width: 100%;
+    color: #8a8a8a;
+    background-color: #f5f5f5;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #ccc;
+    position: fixed;
+    max-width: 540px;
+    bottom: 0px;
+    .tab-bar {
+        width: 100%/4;
+        height: 60px;
+        float: left;
+        padding-top: 5px;
+        .tab-bar-icon {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+            margin-bottom: 5px;
+        }
+        .tab-bar-text {
+            width: 100%;
+            height: 20px;
+            font-size: @housekeeping_font_size1;
+            text-align: center;
+        }
+    }
+    .selected {
+        color: @housekeeping_theme_color;
+    }
+}
+
+.banner {
+    max-width: 540px;
+    width: 100%;
+}
+
+.subject {
+    padding: 2%;
+    padding-bottom: 0px;
+    .nav {
+        width: 100%;
+        background-color: #ffffff;
+        height: 80px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        .nav-bar {
+            width: 100%/4;
+            height: 60px;
+            float: left;
+            margin-top: 20px/3;
+            margin-bottom: 20px/3;
+            .nav-bar-icon {
+                width: 42px;
+                height: 42px;
+                margin: 0 auto;
+                margin-bottom: 20px/3;
+                img {
+                    width: 42px;
+                }
+            }
+            .nav-text {
+                width: 100%;
+                text-align: center;
+                height: 18px;
+                font-size: @housekeeping_font_size3;
+                color: @housekeeping_font_color2;
+                line-height: 18px;
+            }
+        }
+    }
+    .service-plate {
+        width: 100%;
+        background-color: #ffffff;
+        height: 80px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        .service-plate-left {
+            width: 100%/3;
+            height: 80px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border-right-width: 1px;
+            border-right-color: @housekeeping_body_color;
+            border-right-style: solid;
+            float: left;
+            img{
+                height: 80px;
+            }
+        }
+        .service-plate-right {
+            width: 100%/3*2;
+            height: 80px;
+            float: left;
+            div {
+                width: 50%;
+                height: 40px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                border-bottom-width: 1px;
+                border-bottom-color: @housekeeping_body_color;
+                border-bottom-style: solid;
+                border-right-width: 1px;
+                border-right-color: @housekeeping_body_color;
+                border-right-style: solid;
+                float: left;
+                font-size: @housekeeping_font_size3;
+                color: @housekeeping_font_color2;
+                text-align: center;
+                line-height: 40px;
+            }
+        }
+    }
+}
+
+.housekeeping-item {
+    width: 100%;
+    height: auto;
+    .jing-ping-tui-jian,
+    .wei-nin-you-xuan {
+        margin-bottom: 10px;
+        background-color: #ffffff;
+        .housekeeping-item-title {
+            margin: 0 2%;
+            width: 96%;
+            height: 49px;
+            font-size: @housekeeping_font_size4;
+            line-height: 49px;
+            text-align: center;
+            color: @housekeeping_font_color1;
+            border-bottom: 1px solid @housekeeping_body_color;
+        }
+        .housekeeping-item-items {
+            padding: 20px 2%;
+            width: 96%;
+            height: 100px;
+            border-bottom: 1px solid @housekeeping_body_color;
+            .housekeeping-item-items-left {
+                height: 100px;
+                width: 35%;
+                float: left;
+                img {
+                    height: 100px;
+                }
+            }
+            .housekeeping-item-items-right {
+                height: 100px;
+                width: 65%;
+                float: left;
+                .housekeeping-item-items-name {
+                    height: 20px;
+                    width: 100%;
+                    color: @housekeeping_font_color1;
+                    font-size: @housekeeping_font_size3;
+                }
+                .housekeeping-item-items-point {
+                    height: 30px;
+                    width: 100%;
+                    line-height: 15px;
+                    font-size: @housekeeping_font_size2;
+                    color: @housekeeping_font_color3;
+                }
+                .housekeeping-item-items-tag {
+                    height: 25px;
+                    line-height: 100px/4;
+                    span{
+                        font-size: @housekeeping_font_size1;
+                        background-color: @housekeeping_theme_color;
+                        color: #ffffff;
+                        padding: 2px;
+                        margin-right: 2px;
+                    }
+                }
+                .housekeeping-item-items-price {
+                    height: 25px;
+                    width: 100%;
+                    line-height: 100px/4;
+                    color: red;
+                    font-size: @housekeeping_font_size4;
+                    font-weight: 700;
+                    span {
+                        color: @housekeeping_font_color3;
+                        font-size: @housekeeping_font_size1;
+                        text-decoration: line-through;
+                        font-weight: initial;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer-margin {
+    margin-bottom: 60px;
+}

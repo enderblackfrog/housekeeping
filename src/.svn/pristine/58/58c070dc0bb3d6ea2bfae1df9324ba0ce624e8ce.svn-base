@@ -1,0 +1,28 @@
+<template>
+	<div>
+		<iframe :style="'height:' + my_iframe + 'px;' " class="my-iframe" src="https://open.lechange.com/viewH5?uuid=2d50da59ba744abba236cb32364eb6" scrolling="no" frameborder="0"></iframe>
+		蓝色大海共
+	</div>
+</template>
+
+<script>
+	export default {
+		props: {
+			title: String
+		},
+		created() {
+			this.my_iframe = screen.availWidth * 0.72;
+		},
+		data() {
+			return {
+				my_iframe: ''
+			}
+		}
+
+	}
+</script>
+<style>
+	.my-iframe {
+		width: 100%;
+	}
+</style>

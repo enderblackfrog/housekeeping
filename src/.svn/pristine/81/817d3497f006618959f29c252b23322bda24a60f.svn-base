@@ -1,0 +1,210 @@
+<template>
+	<div id="home">
+		<housekeeping-head title="家政LOGO"></housekeeping-head>
+		<swiper :list="imgList" auto style="width:100%;" height="150px" dots-class="custom-bottom" dots-position="right" :show-desc-mask="false"></swiper>
+		<div class="subject">
+			<div class="nav">
+				<div class="nav-bar">
+					<div class="nav-bar-icon">
+						<img :src="nav_bar[0]">
+					</div>
+					<p class="nav-text">新人专享</p>
+				</div>
+				<div class="nav-bar">
+					<div class="nav-bar-icon">
+						<img :src="nav_bar[1]">
+					</div>
+					<p class="nav-text">每日推荐</p>
+				</div>
+				<div class="nav-bar">
+					<div class="nav-bar-icon">
+						<img :src="nav_bar[2]">
+					</div>
+					<p class="nav-text">优惠券</p>
+				</div>
+				<div class="nav-bar">
+					<div class="nav-bar-icon">
+						<img :src="nav_bar[3]">
+					</div>
+					<p class="nav-text">优惠券</p>
+				</div>
+			</div>
+			<div class="service-plate">
+				<div class="service-plate-left">
+					<img src="../assets/img/servce/home_cleaning.png"/>
+				</div>
+				<div class="service-plate-right">
+					<div>钟点保洁</div>
+					<div>超值包月</div>
+					<div>新居开荒</div>
+					<div>搽玻璃</div>
+				</div>
+			</div>
+			<div class="service-plate">
+				<div class="service-plate-left">
+					<img src="../assets/img/servce/family_assistant.png"/>
+				</div>
+				<div class="service-plate-right">
+					<div>住家保姆</div>
+					<div>白班保姆</div>
+					<div>育儿嫂</div>
+					<div>月嫂</div>
+				</div>
+			</div>
+			<div class="service-plate">
+				<div class="service-plate-left">
+					<img src="../assets/img/servce/healthy_life.png"/>
+				</div>
+				<div class="service-plate-right">
+					<div>窗帘清洗</div>
+					<div>空调清洗</div>
+					<div>油烟机清洗</div>
+					<div>更多》</div>
+				</div>
+			</div>
+		</div>
+		<div class="housekeeping-item">
+			<div class="jing-ping-tui-jian">
+				<div class="housekeeping-item-title">精品推荐</div>
+				<div class="housekeeping-item-items">
+					<div class="housekeeping-item-items-left">
+						<img src="../assets/img/item/item.png">
+					</div>
+					<div class="housekeeping-item-items-right">
+						<div class="housekeeping-item-items-name">套餐A</div>
+						<div class="housekeeping-item-items-point">单次4小时全屋保洁+擦窗</div>
+						<div class="housekeeping-item-items-tag">
+							<span>冠名单品</span>
+						</div>
+						<div class="housekeeping-item-items-price">￥179/人&nbsp;&nbsp;<span>￥199</span></div>
+					</div>
+				</div>
+				<div class="housekeeping-item-items">
+					<div class="housekeeping-item-items-left">
+						<img src="../assets/img/item/item.png">
+					</div>
+					<div class="housekeeping-item-items-right">
+						<div class="housekeeping-item-items-name">星级家·初体验</div>
+						<div class="housekeeping-item-items-point">4次x4小时全屋保洁+擦窗</div>
+						<div class="housekeeping-item-items-tag">
+							<span>每次低至125元</span>
+						</div>
+						<div class="housekeeping-item-items-price">￥499/人&nbsp;&nbsp;<span>￥759</span></div>
+					</div>
+				</div>
+				<div class="housekeeping-item-items">
+					<div class="housekeeping-item-items-left">
+						<img src="../assets/img/item/item.png">
+					</div>
+					<div class="housekeeping-item-items-right">
+						<div class="housekeeping-item-items-name">星级家·保洁包年A6套餐</div>
+						<div class="housekeeping-item-items-point">全年每周一次日式保洁（共50次）</div>
+						<div class="housekeeping-item-items-tag">
+							<span>8年经典王牌套餐</span>
+						</div>
+						<div class="housekeeping-item-items-price">￥7299/人&nbsp;&nbsp;<span>￥9999</span></div>
+					</div>
+				</div>
+				<div class="housekeeping-item-items">
+					<div class="housekeeping-item-items-left">
+						<img src="../assets/img/item/item.png">
+					</div>
+					<div class="housekeeping-item-items-right">
+						<div class="housekeeping-item-items-name">做饭家F1-周末享套餐</div>
+						<div class="housekeeping-item-items-point">做饭+家务服务（24次）</div>
+						<div class="housekeeping-item-items-tag">
+							<span>按次扣费的保洁服务</span>
+						</div>
+						<div class="housekeeping-item-items-price">￥3999/人&nbsp;&nbsp;<span>￥5999</span></div>
+					</div>
+				</div>
+				<div class="housekeeping-item-items">
+					<div class="housekeeping-item-items-left">
+						<img src="../assets/img/item/item.png">
+					</div>
+					<div class="housekeeping-item-items-right">
+						<div class="housekeeping-item-items-name">专业家庭清洁工具组</div>
+						<div class="housekeeping-item-items-point">【星级家庭必买】自备清洁工具组不与其它家庭共同使用</div>
+						<div class="housekeeping-item-items-tag">
+							<span>按次扣费的保洁服务</span>
+						</div>
+						<div class="housekeeping-item-items-price">￥3999/人&nbsp;&nbsp;<span>￥5999</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="wei-nin-you-xuan">
+				<div class="housekeeping-item-title">为您优选</div>
+				<div class="housekeeping-item-items">
+					<div class="housekeeping-item-items-left">
+						<img src="../assets/img/item/item.png">
+					</div>
+					<div class="housekeeping-item-items-right">
+						<div class="housekeeping-item-items-name">套餐B</div>
+						<div class="housekeeping-item-items-point">每次低至125元</div>
+						<div class="housekeeping-item-items-price">￥499/人&nbsp;&nbsp;<span>￥759</span></div>
+					</div>
+				</div>
+				<div class="housekeeping-item-items">
+					<div class="housekeeping-item-items-left">
+						<img src="../assets/img/item/item.png">
+					</div>
+					<div class="housekeeping-item-items-right">
+						<div class="housekeeping-item-items-name">套餐B</div>
+						<div class="housekeeping-item-items-point">每次低至125元</div>
+						<div class="housekeeping-item-items-price">￥499/人&nbsp;&nbsp;<span>￥759</span></div>
+					</div>
+				</div>
+				<div class="housekeeping-item-items">
+					<div class="housekeeping-item-items-left">
+						<img src="../assets/img/item/item.png">
+					</div>
+					<div class="housekeeping-item-items-right">
+						<div class="housekeeping-item-items-name">套餐B</div>
+						<div class="housekeeping-item-items-point">每次低至125元</div>
+						<div class="housekeeping-item-items-price">￥499/人&nbsp;&nbsp;<span>￥759</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-margin"></div>
+		<div id="star-five"></div>
+		<housekeeping-foot-nav iconIndex="0"></housekeeping-foot-nav>
+	</div>
+</template>
+
+<script>
+	import banner0 from '../assets/img/banner/banner0.jpg'
+	import banner1 from '../assets/img/banner/banner1.jpg'
+	import recommend from '../assets/icon/recommend.png'
+	import vip_center from '../assets/icon/vip_center.png'
+	import new_guest_exclusive from '../assets/icon/new_guest_exclusive.png'
+	import coupon from '../assets/icon/coupon.png'
+	import { Swiper } from 'vux'
+	export default {
+		components: {
+			Swiper,
+		},
+		data() {
+			return {
+				imgList: [{
+					url: 'javascript:',
+					img: banner0,
+				},
+				{
+					url: 'javascript:',
+					img: banner1,
+				},
+				{
+					url: 'javascript:',
+					img: banner0,
+				}],
+				banner: banner0,
+				nav_bar: [new_guest_exclusive, recommend, coupon, vip_center]
+			}
+		}
+	}
+</script>
+
+<style>
+
+</style>

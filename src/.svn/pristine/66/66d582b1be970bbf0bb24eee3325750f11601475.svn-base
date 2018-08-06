@@ -1,0 +1,97 @@
+@import 'base';
+.swpert-head{
+    width: 100%;
+    height: 50px;
+    background: blue;
+    position: fixed;
+}
+.item-details-info {
+    width: 96%;
+    height: 120px;
+    background: #ffffff;
+    padding: 0 2%;
+    border-bottom: 10px solid @housekeeping_body_color;
+    .item-details-title {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        color: @housekeeping_font_color1;
+        font-size: @housekeeping_font_size5;
+    }
+    .item-details-introduce {
+        width: 100%;
+        line-height: 15px;
+        height: 30px;
+        color: @housekeeping_font_color3;
+        font-size: @housekeeping_font_size3;
+    }
+    .item-details-price {
+        width: 60%;
+        height: 30px;
+        line-height: 30px;
+        color: red;
+        font-size: @housekeeping_font_size5;
+        float: left;
+    }
+    p {
+        width: 40%;
+        text-align: right;
+        height: 30px;
+        line-height: 30px;
+        color: @housekeeping_font_color2;
+        font-size: @housekeeping_font_size3;
+        float: left;
+    }
+}
+
+.item-relevant {
+    width: 96%;
+    height: auto;
+    background: #ffffff;
+    padding: 0 2%;
+    border-bottom: 10px solid @housekeeping_body_color;
+    div {
+        width: 100%;
+        height: 40px;
+        border-bottom: 1px solid @housekeeping_body_color;
+        line-height: 40px;
+    }
+}
+
+.item-details-img {
+    width: 96%;
+    height: auto;
+    background: #ffffff;
+    padding: 0 2%;
+    padding-bottom: 70px;
+    p {
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        font-size: @housekeeping_font_size5;
+    }
+    div {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.bespeak {
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    max-width: 540px;
+    margin: 10px 0;
+    div {
+        width: 60%;
+        height: 50px;
+        border-radius: 25px;
+        background: @housekeeping_theme_color;
+        color: #ffffff;
+        margin: 0px auto;
+        text-align: center;
+        font-size: @housekeeping_font_size5;
+        line-height: 50px;
+    }
+}

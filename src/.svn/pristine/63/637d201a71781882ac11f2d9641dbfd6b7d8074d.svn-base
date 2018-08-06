@@ -1,0 +1,56 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+import my_order from '@/components/my_order'
+import home from '@/components/home'
+import classfly from '@/components/classfly'
+import p_center from '@/components/p_center'
+import item_details from '@/components/item_details'
+import user_service_info from '@/components/user_service_info'
+import order_info from '@/components/order_info'
+import user_address_admin from '@/components/user_address_admin'
+import test from '@/components/test'
+
+Vue.use(Router)
+
+export default new Router({
+	routes: [{
+		path: '/',
+		redirect: 'home',
+	}, {
+		path: '/home',
+		name: 'home',
+		component: home,
+	}, {
+		path: '/my_order',
+		name: 'my_order',
+		component: my_order,
+	}, {
+		path: '/classfly',
+		name: 'classfly',
+		component: classfly,
+	}, {
+		path: '/p_center',
+		name: 'p_center',
+		component: p_center,
+	}, {
+		path: '/item_details',
+		name: 'item_details',
+		component: item_details
+	}, {
+		path: '/user_service_info',
+		name: 'user_service_info',
+		component: user_service_info
+	}, {
+		path: '/order_info',
+		name: 'order_info',
+		component: order_info
+	}, {
+		path: '/user_address_admin',
+		name: 'user_address_admin',
+		component: user_address_admin,
+	}, {
+		path: '/test',
+		name: 'test',
+		component: test,
+	}]
+})

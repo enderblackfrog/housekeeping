@@ -1,0 +1,148 @@
+<template>
+	<div>
+		<housekeeping-head title="确认订单信息"></housekeeping-head>
+		<!--<div class="address">
+			<div class="address-content">
+				<p>联系人：陈浩</p>
+				<p>联系电话：18584601006</p>
+				<p>地址：重庆市江北区华新街西普大厦18-5</p>
+			</div>
+		</div>-->
+		<!--<group gutter="0">
+			<cell @click.native="isShow" is-link primary="content" title="default" value="long long long longlong longlong longlong longlong longlong longlong longlong longlong long"></cell>
+		</group>
+		<popup v-model="show">
+			<group title="slot:each-item">
+				<radio :options="radio001">
+					<template slot-scope="props" slot="each-item">
+						<p>
+							V{{ props.index + 1 }} <img src="http://dn-placeholder.qbox.me/110x110/FF2D55/000" class="vux-radio-icon"> {{ props.label }}
+						</p>
+					</template>
+				</radio>
+			</group>
+		</popup>-->
+
+		<!--<group>
+			<cell title="姓名" inline-desc='地址信息地址新地址' value="1871166123213" @click.native="show7 = true">
+			</cell>
+
+		</group>
+		<div v-transfer-dom>
+			<popup v-model="show7" height="500px" is-transparent>
+				<div style="width: 95%;background-color:#fff;height:500px;margin:0 auto;border-radius:5px;padding-top:10px;">
+					<group>
+						<cell v-for="n in 5"  title="姓名" inline-desc='地址信息地址新地址' value="1871166123213" @click.native="show7 = false">
+						</cell>
+
+					</group>
+					<div style="padding:20px 15px;">
+
+						<x-button type="primary" @click.native="show7 = false">添加服务信息</x-button>
+					</div>
+				</div>
+			</popup>
+		</div>-->
+		<!--<group gutter="0">
+			<cell @click.native="isShow" primary="content" is-link title="default" :value="currentValue"></cell>
+			<div v-transfer-dom>
+				<popup v-model="show" style="background-color:#fff;">
+					<radio :options="options" v-model="currentValue" @on-change="onValueChange"></radio>
+					<template slot="each-item" slot-scope="props">
+						<slot name="each-item" :name="props.name" :age="props.age" :index="props.index">
+							<p>
+								<h1>{{props.name}}</h1>
+								<h2>{{props.age}}</h2>
+							</p>
+						</slot>
+					</template>
+				</popup>
+			</div>
+			</group>-->
+		<group gutter="0">
+			<x-switch title="Default popup" v-model="show" ></x-switch>
+		</group>
+		<div v-transfer-dom>
+			<popup v-model="show" @on-hide="log('hide')" @on-show="log('show')" width="100%">
+				<div class="popup0">
+					<group>
+						<x-switch title="Another XSwitcher" v-model="show"></x-switch>
+						<x-switch title="Show Toast" v-model="showToast"></x-switch>
+					</group>
+				</div>
+			</popup>
+		</div>
+	</div>
+</template>
+
+<script>
+	import { TransferDom, Group, Popup, Radio, Cell, PopupRadio, XButton, XSwitch } from 'vux'
+
+	export default {
+		directives: {
+			TransferDom
+		},
+		components: {
+			Group,
+			Popup,
+			Radio,
+			Cell,
+			PopupRadio,
+			XButton,
+			XSwitch
+		},
+		data() {
+			return {
+				options: [{
+					name: 'chenhao',
+					age: '18'
+				}, {
+					name: 'zheng',
+					age: '17'
+				}, {
+					name: 'tian',
+					age: '21'
+				}],
+				option5: 'B',
+				show: false,
+				currentValue: this.value
+			}
+		},
+		methods: {
+			isShow: function() {
+				this.show = true;
+			},
+			onValueChange: function() {
+				this.show = false;
+			}
+		}
+	}
+</script>
+
+<style lang="less">
+	@import url("../assets/less/base.less");
+	.address {
+		background: #ffffff;
+		width: 96%;
+		height: 100px;
+		padding: 10px 2%;
+		border-bottom: 2px dotted red;
+		.address-content {
+			width: 90%;
+			height: 100%;
+			p {
+				height: 25px;
+				width: 100%;
+				line-height: 25px;
+				color: @housekeeping_font_color2;
+				font-size: @housekeeping_font_size3;
+			}
+		}
+	}
+	
+	.demo3-slot {
+		text-align: center;
+		padding: 8px 0;
+		color: #888;
+	}
+</style>

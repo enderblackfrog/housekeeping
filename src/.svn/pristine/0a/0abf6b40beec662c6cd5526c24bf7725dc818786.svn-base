@@ -1,0 +1,7 @@
+@import 'base';
+.service_info{
+    width: 96%;
+    height: auto;
+    padding: 0 2%;
+    background-color: white;
+}

@@ -1,0 +1,259 @@
+<template>
+	<div>
+		<housekeeping-head title="确认预约信息"></housekeeping-head>
+		<group gutter="0" label-width="4.5em" label-margin-right="2em" label-align="left">
+			<cell @click.native="show = !show" is-link primary="content" :value="radio005.address">
+				<span slot="title" style="color: #333333; font-size：100px"><span style="vertical-align:middle;">{{radio005.name}}</span></span>
+				<p slot="inline-desc" style="">{{radio005.telephone}}</p>
+			</cell>
+		</group>
+		<div class="order-details">
+			<div class="order-details-img" style="background-image: url(http://192.168.2.236:80/order.png);"></div>
+			<div class="order-item">
+				<div class="title" style="">超值包月套餐</div>
+				<div class="introduce">建议面积：80㎡及以下（2次/月）</div>
+				<div class="price">￥198</div>
+				<div class="number">X1</div>
+			</div>
+		</div>
+		<group gutter="0" label-width="4.5em" label-margin-right="2em" label-align="left">
+			<datetime v-model="minuteListValue" format="YYYY-MM-DD HH:mm" :start-date="start_date" :min-hour="8" :max-hour="20" :minute-list="['00', '15', '30', '45']" title="预约时间"></datetime>
+		</group>
+		<div class="order-explain">
+			<p>1.保洁类服务请选择上门时间。</p>
+			<p>2.阿姨类服务请选择面试时间。</p>
+			<p>3.修改预约信息需要提前一天联系客服，若未及时修改导致服务人员上门未服务的，该订单按已服务计算。</p>
+		</div>
+		<group gutter="0" label-width="4.5em" label-margin-right="2em" label-align="left">
+			<x-textarea title="备注" :show-counter="false" :rows="4"></x-textarea>
+		</group>
+		<div class="order-footer">
+			<div class="total">总计：￥<span>198</span></div>
+			<div class="submit">确认预约</div>
+		</div>
+		<div v-transfer-dom>
+			<popup v-model="show" position="bottom" max-height="50%" style="background: #ffffff;">
+				<div class="address" v-for="(address,index) in radio003" @click="changeAddress(index)">
+					<div class="address-info">
+						<div>联系人：{{address.name}}</div>
+						<div>联系电话：{{address.telephone}}</div>
+						<div>预约地址：{{address.address}}</div>
+					</div>
+					<div class="address-active">
+						<x-icon type="ios-checkmark-empty" size="40" v-if="(address.default && typeof def === 'undefined') ? address.default : def === index"></x-icon>
+					</div>
+				</div>
+			</popup>
+		</div>
+	</div>
+</template>
+
+<script>
+	import { TransferDom, Popup, Group, Cell, Toast, Icon, Datetime, XTextarea } from 'vux'
+
+	export default {
+		directives: {
+			TransferDom
+		},
+		components: {
+			TransferDom,
+			Popup,
+			Group,
+			Cell,
+			Toast,
+			Icon,
+			Datetime,
+			XTextarea
+		},
+		data() {
+			return {
+				//activeValue: '',
+				radio001: ['China', 'Japan'],
+				show: false,
+				radio003: [{
+					id: '0',
+					name: '诸葛孔明',
+					telephone: '13996564444',
+					address: '重庆市江北区华新街西普大厦18-5',
+					default: true
+				}, {
+					id: '1',
+					name: '陈浩',
+					telephone: '18584601006',
+					address: '重庆市九龙坡区歇台子南方花园A区6栋6-15',
+					default: false
+				}],
+				radio005: {
+					id: '0',
+					name: '诸葛孔明',
+					telephone: '13996564444',
+					address: '重庆市江北区华新街西普大厦18-5',
+					default: true
+				},
+				def: undefined,
+				minuteListValue: '',
+				start_date: '',
+			}
+		},
+		methods: {
+			changeAddress(index) {
+				this.radio005 = this.radio003[index];
+				this.show = false;
+				this.def = index;
+			},
+			formatDate(date, format) {
+				var o = {
+					"M+": date.getMonth() + 1, //month
+					"d+": date.getDate(), //day
+					"h+": date.getHours(), //hour
+					"m+": date.getMinutes(), //minute
+					"s+": date.getSeconds(), //second
+					"q+": Math.floor((date.getMonth() + 3) / 3), //quarter
+					"S": date.getMilliseconds() //millisecond
+				}
+				if(/(y+)/.test(format)) format = format.replace(RegExp.$1,
+					(date.getFullYear() + "").substr(4 - RegExp.$1.length));
+				for(var k in o)
+					if(new RegExp("(" + k + ")").test(format))
+						format = format.replace(RegExp.$1,
+							RegExp.$1.length == 1 ? o[k] :
+							("00" + o[k]).substr(("" + o[k]).length));
+				return format;
+			}
+		},
+		created() {
+			var time = new Date();
+			this.start_date = this.formatDate(time, "yyyy-MM-dd");
+			this.minuteListValue = this.formatDate(time, "yyyy-MM-dd hh:mm");
+		}
+	}
+</script>
+
+<style lang="less" scoped="scoped">
+	@import url("../assets/less/base.less");
+	.address {
+		width: 96%;
+		border-bottom: 1px solid @housekeeping_body_color;
+		padding: 10px 2%;
+		display: flex;
+		flex-direction: row;
+		.address-info {
+			width: 90%;
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			div {
+				width: 100%;
+				line-height: 25px;
+				color: @housekeeping_font_color2;
+				font-size: @housekeeping_font_size4;
+			}
+		}
+		.address-active {
+			width: 10%;
+			align-self: center;
+		}
+	}
+	
+	.order-details {
+		width: 96%;
+		padding: 10px 2%;
+		display: flex;
+		display: -webkit-flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		.order-details-img {
+			width: 100px;
+			height: 100px;
+			background-size: cover;
+			margin-right: 20px;
+		}
+		.order-item {
+			width: 60%;
+			height: auto;
+			display: flex;
+			display: -webkit-flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-content: space-between;
+			.title {
+				width: 100%;
+				font-size: @housekeeping_font_size4;
+				color: #333333;
+			}
+			.introduce {
+				width: 100%;
+				color: #999999;
+				font-size: @housekeeping_font_size3;
+				/*line-height: 20px;
+				height: 40px;
+				margin-bottom: 10px;*/
+			}
+			.price {
+				width: 50%;
+				font-size: @housekeeping_font_size5;
+				color: red;
+			}
+			.number {
+				text-align: right;
+				width: 50%;
+				font-size: @housekeeping_font_size4;
+				color: #666666;
+			}
+		}
+	}
+	
+	.order-explain {
+		width: 96%;
+		height: auto;
+		background: #ffffff;
+		padding: 10px 2%;
+		P {
+			line-height: 18px;
+			margin-bottom: 5px;
+			font-size: @housekeeping_font_size3;
+			color: @housekeeping_font_color3;
+		}
+	}
+	
+	.order-footer {
+		height: 60px;
+		width: 100%;
+		position: fixed;
+		bottom: 0px;
+		background: @housekeeping_body_color;
+		display: flex;
+		display: -webkit-flex;
+		flex-direction: row;
+		.submit,
+		.total {
+			height: 60px;
+			line-height: 60px;
+		}
+		.total {
+			margin-left: 2%;
+			text-align: left;
+			font-size: @housekeeping_font_size5;
+			flex: 3;
+			span {
+				color: red;
+				font-weight: 700;
+				font-size: 24px;
+			}
+		}
+		.submit {
+			text-align: center;
+			background: @housekeeping_theme_color;
+			color: #ffffff;
+			font-size: @housekeeping_font_size5;
+			flex: 2;
+		}
+		.submit:active {
+			background: #04a0e5;
+		}
+	}
+	
+	.vux-x-icon {
+		fill: @housekeeping_theme_color;
+	}
+</style>
