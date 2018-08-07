@@ -1,8 +1,8 @@
 <template>
   <div>
     <ul>
-      <li class="Order_box" v-for="(data , index) in datas" :key="index" @click="yuyue(index)">
-        <div class="Order_secbox">
+      <li class="Order_box" v-for="(data , index) in datas" :key="index">
+        <div class="Order_secbox" @click="yuyue(index)">
           <img class="Order_headpic" :src="data.img.src" alt="">
           <div class="Order_depict">
             <p>{{data.sku.title}}</p>
@@ -11,8 +11,8 @@
           </div>
         </div>
         <div class="Order_bottom_set">
-          <!--<span class="turn_inblock">取消订单</span>-->
-          <span class="turn_inblock">立即预约</span>
+          <span class="turn_inblock" @click="yuyue(index)">立即预约</span>
+          <span class="turn_inblock" @click="goToRe(index)">申请退款</span>
         </div>
       </li>
     </ul>
@@ -51,8 +51,10 @@
         }
       },
       yuyue(index){
-
         this.$router.push({path:'/confirmation_time',query:{orderId:this.datas[index].order.id,status:this.datas[index].order.status}});
+      },
+      goToRe(index){
+        this.$router.push({path:'/refund',query:{orderId:this.datas[index].order.id}})
       }
     },
     created(){

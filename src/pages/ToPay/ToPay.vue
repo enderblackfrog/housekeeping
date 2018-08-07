@@ -60,7 +60,7 @@
           title: '注意',
           message: '您确定要取消这个订单吗？'
         }).then(() => {
-          orderId:this.datas[index].id
+          orderId:this.datas[index].id;
           this.$http({
             url:'/api' + '/delete_order.do',
             method:'post',

@@ -12,8 +12,7 @@
           </div>
         </div>
         <div class="Order_bottom_set">
-          <span class="turn_inblock" @click="ToRefund">申请退款</span>
-          <span class="turn_inblock">待评价</span>
+          <span class="turn_inblock" @click="deleteHistory">删除记录</span>
         </div>
       </li>
     </ul>
@@ -24,9 +23,9 @@
     export default {
         name: "ToEvaluate",
       methods:{
-          ToRefund:function(){
-            this.$router.push({path:'/refund'})
-          }
+        deleteHistory(){
+
+        }
       }
     }
 </script>

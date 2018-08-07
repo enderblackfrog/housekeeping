@@ -30,7 +30,7 @@
         <group gutter="0" label-width="4.5em" label-margin-right="2em" label-align="left">
           <datetime v-model="minuteListValue" format="YYYY-MM-DD HH:mm" :start-date="start_date" :min-hour="8" :max-hour="20" :minute-list="['00', '15', '30', '45']" title="预约时间"></datetime>
         </group>
-        <textarea class="BZ" name="" id="" placeholder="备注："></textarea>
+        <textarea v-model="textTip" class="BZ" name="" id="tipText" placeholder="备注："></textarea>
         <van-row style="text-align: center;margin-top: 1rem" type="flex" justify="center">
           <van-col span="6">
             <van-button size="normal" @click="show = false" type="danger">取消</van-button>
@@ -46,11 +46,11 @@
     </van-popup>
     <!--添加预约时间按钮切换-->
     <div v-if="order.status == 1 ? false : true">
-      <van-button size="large" @click="show = true">
+      <van-button size="large" @click="show = true" v-if="spus.serviceTimes - orderLists.length >0">
         点击添加预约时间
         <span style="color: red;font-size: 12px">剩余预约次数：<span style="font-size: 20px">{{spus.serviceTimes - orderLists.length}}</span>次</span>
       </van-button>
-      <van-button size="large" @click="show = true" disabled v-if="false">
+      <van-button size="large" @click="show = true" disabled v-if="spus.serviceTimes - orderLists.length == 0">
         点击添加预约时间
         <span style="color: red;font-size: 12px">剩余预约次数：<span style="font-size: 20px">0</span>次</span>
       </van-button>
@@ -59,20 +59,22 @@
       <p class="list_title">预约列表</p>
       <van-collapse v-model="activeName" accordion v-for="(orderList , index) in orderLists" :key="index">
         <van-collapse-item :title="orderList.serviceTime | dateFilter" :name='orderList.id'>
-          <!--<div style="font-size: 13px;margin: 0 0 10px 0">客服：{{orderList.servicePersonal}}</div>-->
+          <div style="font-size: 13px;margin: 0 0 10px 0">服务人员：{{orderList.servicePersonal == ""|| orderList.servicePersonal ==undefined || orderList.servicePersonal ==null ? '待定' : orderList.servicePersonal }}</div>
           <div style="line-height: 20px">备注：{{orderList.remarks}}</div>
         </van-collapse-item>
       </van-collapse>
     </div>
+    <van-button v-if="order.status == 1" size="large" style="background-color: #00b9f6;color: white;position: fixed;bottom: 0">确认预约</van-button>
   </div>
 </template>
 
 <script>
-  import { TransferDom, Popup, Group, Cell, Toast, Icon, Datetime, XTextarea, ChinaAddressData } from 'vux'
+  import { TransferDom, Popup, Group, Cell, Icon, Datetime, XTextarea, ChinaAddressData } from 'vux'
   //import { Button } from 'vant'
   import value2name from '../filters/value2name'
   import {getCookie} from "../util/util";
-  import moment from 'moment'
+  import moment from 'moment';
+  import { Toast } from 'vant';
   import name2value from '../filters/name2value'
 
 
@@ -112,6 +114,7 @@
         skus:{},
         def:undefined,
         minuteListValue: '',
+        textTip:'',
         start_date: '',
         // 优惠卷
         chosenCoupon: -1,
@@ -200,29 +203,39 @@
             if(status == 2){
               this.orderLists = data.data.serviceTimesList;
             }
-              console.log(data);
+              // console.log(data);
               this.imgs = data.data.img;
               this.address = data.data.serviceAddress;
               this.skus = data.data.sku;
               this.spus = data.data.spu;
               this.city1 = this.addressFilter1(this.address.city, this.addressData) + this.address.address;
               this.order = data.data.order;
-              console.log(this.order)
+              // console.log(this.order)
             }
           )
         }
       },
-      addDate(remarks,orderId,serviceTime){
+      addDate(){
+        this.show = false;
         this.$http({
           method:'post',
-          url:'/api' + '/add_service_time.do',
+          url:'/api' + '/add_serivce_time.do',
           params:{
-            remarks:remarks,
-            orderId:orderId,
-            serviceTime:serviceTime
+            remarks:this.textTip.valueOf(),
+            orderId:this.$route.query.orderId,
+            timeStamp:moment(this.minuteListValue,"YYYY-MM-DD HH:mm").valueOf()
           }
-        }).then();
-        console.log(remarks);
+        }).then(
+          ({data})=>{
+            console.log(data);
+            if(data.status == 200){
+              Toast.success('预约成功');
+              this.$router.go(0);
+            }else{
+              Toast.fail(data.msg);
+            }
+          }
+        );
       }
     },
     created() {

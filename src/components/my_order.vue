@@ -5,7 +5,7 @@
       <div class="link_box">
         <router-link :class="{on_line:'/my_order/topay'===$route.path}" to="topay" replace>待付款</router-link>
         <router-link :class="{on_line:'/my_order/toorder'===$route.path}" to="toorder" replace>待预约</router-link>
-        <router-link :class="{on_line:'/my_order/toevaluate'===$route.path}" to="toevaluate" replace>待评价</router-link>
+        <router-link :class="{on_line:'/my_order/toevaluate'===$route.path}" to="toevaluate" replace>已完成</router-link>
         <router-link :class="{on_line:'/my_order/aftersale'===$route.path}" to="aftersale" replace>退款/售后</router-link>
       </div>
       <router-view/>

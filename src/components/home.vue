@@ -63,105 +63,35 @@
 				</div>
 			</div>
 		</div>
+    <!--精品推荐-->
 		<div class="housekeeping-item">
 			<div class="jing-ping-tui-jian">
 				<div class="housekeeping-item-title">精品推荐</div>
-				<div class="housekeeping-item-items">
+				<div class="housekeeping-item-items" v-for="(forYou , index) in ForYou" :key="index" @click="goDetails(forYou.sku.id)" >
 					<div class="housekeeping-item-items-left">
-						<img src="../assets/img/item/item.png">
+						<img :src="forYou.img.src">
 					</div>
 					<div class="housekeeping-item-items-right">
-						<div class="housekeeping-item-items-name">套餐A</div>
-						<div class="housekeeping-item-items-point">单次4小时全屋保洁+擦窗</div>
+						<div class="housekeeping-item-items-name">{{forYou.sku.title}}</div>
+						<div class="housekeeping-item-items-point">{{forYou.sku.introduce}}</div>
 						<div class="housekeeping-item-items-tag">
 							<span>冠名单品</span>
 						</div>
-						<div class="housekeeping-item-items-price">￥179/人&nbsp;&nbsp;<span>￥199</span></div>
-					</div>
-				</div>
-				<div class="housekeeping-item-items">
-					<div class="housekeeping-item-items-left">
-						<img src="../assets/img/item/item.png">
-					</div>
-					<div class="housekeeping-item-items-right">
-						<div class="housekeeping-item-items-name">星级家·初体验</div>
-						<div class="housekeeping-item-items-point">4次x4小时全屋保洁+擦窗</div>
-						<div class="housekeeping-item-items-tag">
-							<span>每次低至125元</span>
-						</div>
-						<div class="housekeeping-item-items-price">￥499/人&nbsp;&nbsp;<span>￥759</span></div>
-					</div>
-				</div>
-				<div class="housekeeping-item-items">
-					<div class="housekeeping-item-items-left">
-						<img src="../assets/img/item/item.png">
-					</div>
-					<div class="housekeeping-item-items-right">
-						<div class="housekeeping-item-items-name">星级家·保洁包年A6套餐</div>
-						<div class="housekeeping-item-items-point">全年每周一次日式保洁（共50次）</div>
-						<div class="housekeeping-item-items-tag">
-							<span>8年经典王牌套餐</span>
-						</div>
-						<div class="housekeeping-item-items-price">￥7299/人&nbsp;&nbsp;<span>￥9999</span></div>
-					</div>
-				</div>
-				<div class="housekeeping-item-items">
-					<div class="housekeeping-item-items-left">
-						<img src="../assets/img/item/item.png">
-					</div>
-					<div class="housekeeping-item-items-right">
-						<div class="housekeeping-item-items-name">做饭家F1-周末享套餐</div>
-						<div class="housekeeping-item-items-point">做饭+家务服务（24次）</div>
-						<div class="housekeeping-item-items-tag">
-							<span>按次扣费的保洁服务</span>
-						</div>
-						<div class="housekeeping-item-items-price">￥3999/人&nbsp;&nbsp;<span>￥5999</span></div>
-					</div>
-				</div>
-				<div class="housekeeping-item-items">
-					<div class="housekeeping-item-items-left">
-						<img src="../assets/img/item/item.png">
-					</div>
-					<div class="housekeeping-item-items-right">
-						<div class="housekeeping-item-items-name">专业家庭清洁工具组</div>
-						<div class="housekeeping-item-items-point">【星级家庭必买】自备清洁工具组不与其它家庭共同使用</div>
-						<div class="housekeeping-item-items-tag">
-							<span>按次扣费的保洁服务</span>
-						</div>
-						<div class="housekeeping-item-items-price">￥3999/人&nbsp;&nbsp;<span>￥5999</span></div>
+						<div class="housekeeping-item-items-price">￥{{forYou.spu.price / 100}}/人&nbsp;&nbsp;<span>￥199</span></div>
 					</div>
 				</div>
 			</div>
+      <!--为您优选-->
 			<div class="wei-nin-you-xuan">
 				<div class="housekeeping-item-title">为您优选</div>
-				<div class="housekeeping-item-items">
+				<div class="housekeeping-item-items" v-for="(recommend , index) in Recommend" :key="index">
 					<div class="housekeeping-item-items-left">
-						<img src="../assets/img/item/item.png">
+						<img :src="recommend.img.src">
 					</div>
 					<div class="housekeeping-item-items-right">
-						<div class="housekeeping-item-items-name">套餐B</div>
-						<div class="housekeeping-item-items-point">每次低至125元</div>
-						<div class="housekeeping-item-items-price">￥499/人&nbsp;&nbsp;<span>￥759</span></div>
-					</div>
-				</div>
-				<div class="housekeeping-item-items">
-					<div class="housekeeping-item-items-left">
-						<img src="../assets/img/item/item.png">
-					</div>
-					<div class="housekeeping-item-items-right">
-						<div class="housekeeping-item-items-name">套餐B</div>
-						<div class="housekeeping-item-items-point">每次低至125元</div>
-						<div class="housekeeping-item-items-price">￥499/人&nbsp;&nbsp;<span>￥759</span></div>
-					</div>
-				</div>
-				<div class="housekeeping-item-items">
-					<div class="housekeeping-item-items-left">
-						<img src="../assets/img/item/item.png">
-					</div>
-					<div class="housekeeping-item-items-right">
-						<div class="housekeeping-item-items-name">套餐B</div>
-						<div class="housekeeping-item-items-point">每次低至125元</div>
-						<div class="housekeeping-item-items-price">￥499/人&nbsp;&nbsp;<span>￥759</span></div>
+						<div class="housekeeping-item-items-name">{{recommend.sku.title}}</div>
+						<div class="housekeeping-item-items-point">{{recommend.sku.introduce}}</div>
+						<div class="housekeeping-item-items-price">￥{{recommend.spu.price / 100}}/人&nbsp;&nbsp;<span>￥759</span></div>
 					</div>
 				</div>
 			</div>
@@ -180,8 +110,10 @@
 	import new_guest_exclusive from '../assets/icon/new_guest_exclusive.png'
 	import coupon from '../assets/icon/coupon.png'
 	import { Swiper } from 'vux'
+  import RouterLink from "vant/es/mixins/router-link";
 	export default {
 		components: {
+      RouterLink,
 			Swiper,
 		},
 		data() {
@@ -199,13 +131,32 @@
 					img: banner0,
 				}],
 				banner: banner0,
-				nav_bar: [new_guest_exclusive, recommend, coupon, vip_center]
+				nav_bar: [new_guest_exclusive, recommend, coupon, vip_center],
+
+        ForYou:[],
+        Recommend:[]
 			}
 		},
     methods:{
       goNew(){
         this.$router.push('/Newlyweds')
+      },
+      initData(){
+        this.$http({
+          method:'post',
+          url:'/api' + '/home.do'
+        }).then(({data}) => {
+          this.ForYou = data.data.forYou;
+          this.Recommend = data.data.recommend;
+          console.log(data)
+        })
+      },
+      goDetails(skuId){
+        this.$router.push({name:'item_details',query:{skuId:skuId}});
       }
+    },
+    created(){
+		  this.initData()
     }
 	}
 </script>
