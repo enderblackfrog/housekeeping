@@ -4,11 +4,11 @@
     <ul>
       <li class="Order_box">
         <div class="Order_secbox">
-          <img class="Order_headpic" src="../../assets/img/item/item.png" alt="">
+          <img class="Order_headpic" :src="src" alt="">
           <div class="Order_depict">
-            <p>这是一个主标题一个主标题</p>
-            <p class="middle_title">这是一个副标题</p>
-            <p>¥160.00 <span class="cross_line">¥160.00</span></p>
+            <p>{{title}}</p>
+            <p class="middle_title">{{introduce}}</p>
+            <p>¥{{price / 100}} <span class="cross_line">¥160.00</span></p>
           </div>
         </div>
         <div class="R_details">
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+  import {getCookie} from "../../util/util";
+  import {Toast} from 'vant'
 
   export default {
     name: "Refund",
@@ -39,6 +41,11 @@
         Surplus:200,
         introduct:'',
         changeBT:true,
+        src:{},
+        title:{},
+        introduce:{},
+        price:{}
+
       }
     },
     watch:{
@@ -59,9 +66,44 @@
         }
       },
       hehe(){
-        console.log('hehe')
+        // console.log('hehe')
+        this.$http({
+          method:'post',
+          url:'/api' + '/application4refund.do',
+          params:{
+            orderId:this.$route.query.orderId,
+            reason:this.introduct.valueOf(),
+          }
+        }).then(({data})=>{
+          if(data.status == 200){
+            Toast.success(data.data);
+            this.$router.go(-1);
+          }else{
+            Toast.fail(data.msg);
+          }
+        })
+      },
+      initData(orderId){
+        if(getCookie('isLogin') == 'true'){
+          this.$http({
+            method:'post',
+            url:'/api' + '/application4refund_page.do',
+            params:{
+              orderId
+            }
+          }).then(({data})=>{
+            this.src = data.data.img.src;
+            this.title = data.data.sku.title;
+            this.introduce = data.data.sku.introduce;
+            this.price = data.data.spu.price;
+          })
+
+        }
       }
     },
+    created(){
+      this.initData(this.$route.query.orderId)
+    }
   }
 </script>
 
